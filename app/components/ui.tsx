@@ -11,13 +11,13 @@ type ButtonProps = {
 
 const buttonClassByVariant = {
   primary:
-    "bg-[var(--accent)] text-white hover:brightness-110 border border-transparent",
+    "bg-[var(--accent)] text-white border border-transparent shadow-[0_10px_20px_-16px_rgba(79,124,255,0.9)] hover:-translate-y-px hover:brightness-110 hover:shadow-[0_16px_30px_-16px_rgba(79,124,255,0.72)] active:translate-y-0 active:brightness-100",
   secondary:
-    "bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--card-border)] hover:border-[var(--accent)]",
+    "bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--card-border)] hover:-translate-y-px hover:border-[var(--accent)] hover:bg-[color-mix(in_oklab,var(--bg-elevated)_88%,var(--accent)_12%)] active:translate-y-0",
   ghost:
-    "bg-transparent text-[var(--text)] border border-transparent hover:border-[var(--card-border)] hover:bg-[var(--bg-elevated)]",
+    "bg-transparent text-[var(--text)] border border-transparent hover:-translate-y-px hover:border-[var(--card-border)] hover:bg-[var(--bg-elevated)] active:translate-y-0",
   danger:
-    "bg-transparent text-[var(--danger)] border border-red-500/40 hover:bg-red-500/10",
+    "bg-transparent text-[var(--danger)] border border-red-500/40 hover:-translate-y-px hover:bg-red-500/10 active:translate-y-0",
 };
 
 export function Button({
@@ -88,7 +88,7 @@ export function GlassCard({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`surface p-5 ${className ?? ""}`}>{children}</div>;
+  return <div className={`surface surface-card p-5 ${className ?? ""}`}>{children}</div>;
 }
 
 export function EmptyState({

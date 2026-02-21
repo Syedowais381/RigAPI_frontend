@@ -20,8 +20,11 @@ export function PanelLayout({
   return (
     <div className="container-shell py-8">
       <div className="mb-7">
-        <Link href="/" className="text-sm text-muted hover:text-[var(--text)]">
-          ← Back to RigAPI
+        <Link
+          href="/"
+          className="inline-flex rounded-[var(--radius-sm)] px-2 py-1 text-sm text-muted hover:-translate-y-px hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
+        >
+          ? Back to RigAPI
         </Link>
       </div>
       <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
@@ -32,7 +35,7 @@ export function PanelLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-[var(--radius-sm)] px-3 py-2 text-sm text-muted hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
+                className="block rounded-[var(--radius-sm)] border border-transparent px-3 py-2 text-sm text-muted hover:-translate-y-px hover:border-[var(--card-border)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
               >
                 {item.label}
               </Link>

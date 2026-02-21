@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { RigApiLogo } from "@/app/components/logo";
 import { Button } from "@/app/components/ui";
 
 const navLinks = [
@@ -22,15 +23,13 @@ function SiteNavbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--card-border)] bg-[rgba(9,13,22,0.82)] backdrop-blur-md">
       <div className="container-shell flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="text-base font-semibold tracking-tight">
-          RigAPI
-        </Link>
+        <RigApiLogo />
         <nav className="hidden items-center gap-2 md:flex">
           {navLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-[var(--radius-sm)] px-3 py-2 text-sm text-muted hover:text-[var(--text)]"
+              className="rounded-[var(--radius-sm)] border border-transparent px-3 py-2 text-sm text-muted hover:-translate-y-px hover:border-[var(--card-border)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
             >
               {item.label}
             </Link>
@@ -60,7 +59,10 @@ function SiteFooter() {
               <ul className="mt-3 space-y-2">
                 {column.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm text-muted hover:text-[var(--text)]">
+                    <a
+                      href="#"
+                      className="inline-flex rounded-[var(--radius-sm)] px-1.5 py-1 text-sm text-muted hover:-translate-y-px hover:text-[var(--text)]"
+                    >
                       {link}
                     </a>
                   </li>
@@ -70,7 +72,7 @@ function SiteFooter() {
           ))}
         </div>
         <p className="mt-10 border-t border-[var(--card-border)] pt-5 text-sm text-muted">
-          © RigAPI. All rights reserved.
+          Copyright RigAPI. All rights reserved.
         </p>
       </div>
     </footer>
