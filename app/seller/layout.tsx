@@ -15,7 +15,7 @@ export default function SellerLayout({ children }: { children: ReactNode }) {
   return (
     <PanelLayout
       title="Seller Dashboard"
-      description="Manage APIs, deployments, analytics, monetization, and AI generation."
+      description="Extend your marketplace presence with API publishing, deployments, monetization, and AI generation."
       navItems={sellerNav}
     >
       {children}

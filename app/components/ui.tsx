@@ -6,6 +6,8 @@ type ButtonProps = {
   href?: string;
   variant?: "primary" | "secondary" | "ghost" | "danger";
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  onClick?: () => void;
   className?: string;
 };
 
@@ -25,6 +27,8 @@ export function Button({
   href,
   variant = "primary",
   disabled,
+  type = "button",
+  onClick,
   className,
 }: ButtonProps) {
   const classes = `inline-flex items-center justify-center rounded-[var(--radius-sm)] px-4 py-2 text-sm font-medium ${buttonClassByVariant[variant]} ${disabled ? "pointer-events-none opacity-40" : ""} ${className ?? ""}`;
@@ -38,7 +42,7 @@ export function Button({
   }
 
   return (
-    <button type="button" disabled={disabled} className={classes}>
+    <button type={type} disabled={disabled} className={classes} onClick={onClick}>
       {children}
     </button>
   );

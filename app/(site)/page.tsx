@@ -1,13 +1,32 @@
 import {
   BoltIcon,
-  CloudIcon,
   CoinIcon,
+  CloudIcon,
   GaugeIcon,
   ShieldIcon,
 } from "@/app/components/icons";
-import { Button, GlassCard, SectionTitle } from "@/app/components/ui";
+import { Badge, Button, GlassCard, SectionTitle } from "@/app/components/ui";
+import { marketplaceApis } from "@/app/data/apis";
 
-const features = [
+const marketplaceFeatures = [
+  {
+    title: "Secure Gateway Proxy",
+    description: "Route and protect subscribed API traffic through centralized access policies.",
+    icon: ShieldIcon,
+  },
+  {
+    title: "Integration-Ready APIs",
+    description: "Discover production-ready APIs with clear pricing, limits, and documentation.",
+    icon: GaugeIcon,
+  },
+  {
+    title: "Usage & Key Management",
+    description: "Generate API keys, monitor usage, and govern subscriptions across teams.",
+    icon: CloudIcon,
+  },
+];
+
+const sellerTools = [
   {
     title: "AI API Generator",
     description: "Define inputs and outputs, then generate production-ready API logic.",
@@ -19,27 +38,17 @@ const features = [
     icon: CoinIcon,
   },
   {
-    title: "Secure Gateway Proxy",
-    description: "Route and protect all API traffic through centralized access control.",
-    icon: ShieldIcon,
-  },
-  {
     title: "One-Click Deployment",
     description: "Publish APIs quickly with managed infrastructure and release workflows.",
     icon: CloudIcon,
   },
-  {
-    title: "High-Performance Infrastructure",
-    description: "Designed for low-latency API delivery with developer-first reliability.",
-    icon: GaugeIcon,
-  },
 ];
 
 const steps = [
-  "Generate or Upload API",
-  "Deploy Through RigAPI",
-  "Share & Monetize",
-  "Track Usage & Revenue",
+  "Discover APIs in Marketplace",
+  "Subscribe and Generate API Keys",
+  "Integrate Through RigAPI Gateway",
+  "Scale with Seller Tools",
 ];
 
 export default function LandingPage() {
@@ -52,16 +61,17 @@ export default function LandingPage() {
             AI-powered API marketplace and gateway
           </p>
           <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
-            Build. Deploy. Monetize APIs.
+            Discover Production-Ready APIs.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-            RigAPI helps developers create APIs with AI, deploy through a secure centralized
-            gateway, and launch monetization-ready products for startups and students.
+            Start by discovering integration-ready APIs in RigAPI Marketplace, subscribe with
+            transparent pricing, and ship faster. Then expand into AI API generation and publishing
+            when you are ready to sell.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/signup">Get Started</Button>
-            <Button href="/marketplace" variant="secondary">
-              Explore APIs
+            <Button href="/marketplace">Explore Marketplace</Button>
+            <Button href="/signup" variant="secondary">
+              Become a Seller
             </Button>
           </div>
         </div>
@@ -69,15 +79,82 @@ export default function LandingPage() {
 
       <section>
         <SectionTitle
-          title="Platform Capabilities"
-          description="Core infrastructure to ship, secure, and commercialize APIs."
+          title="Trending APIs on RigAPI"
+          description="High-demand APIs with clear limits, pricing, and verified sellers."
+        />
+        <div className="grid gap-4 md:grid-cols-2">
+          {marketplaceApis.map((api) => (
+            <GlassCard key={api.slug}>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-base font-semibold">{api.name}</h3>
+                <Badge variant="success">Verified</Badge>
+              </div>
+              <p className="mt-2 text-sm text-muted">{api.description}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Badge>{api.category}</Badge>
+                <Badge variant="accent">{api.pricingModel}</Badge>
+              </div>
+              <div className="mt-4 space-y-3 text-sm">
+                <div>
+                  <p className="font-medium">Rate Limit</p>
+                  <ul className="mt-1 space-y-1 text-muted">
+                    {api.rateLimit.map((limit) => (
+                      <li key={limit}>{limit}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium">Pricing</p>
+                  <ul className="mt-1 space-y-1 text-muted">
+                    {api.pricing.map((plan) => (
+                      <li key={plan}>{plan}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm">
+                <p className="text-muted">
+                  Seller: <span className="text-[var(--text)]">{api.sellerName}</span>
+                </p>
+                <p>
+                  Starting at <span className="font-semibold">{api.startingPrice}</span>
+                </p>
+              </div>
+              <Button href={`/api/${api.slug}`} variant="secondary" className="mt-4 w-full">
+                View Details
+              </Button>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionTitle
+          title="Marketplace Capabilities"
+          description="Core platform capabilities for API discovery, subscriptions, and integration."
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {features.map((feature) => (
+          {marketplaceFeatures.map((feature) => (
             <GlassCard key={feature.title} className="hover:border-[var(--accent)]">
               <feature.icon className="h-6 w-6 text-[var(--accent)]" />
               <h3 className="mt-4 text-base font-semibold">{feature.title}</h3>
               <p className="mt-2 text-sm text-muted">{feature.description}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionTitle
+          title="Seller Growth Tools"
+          description="Advanced publishing and monetization tools for API providers."
+        />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {sellerTools.map((tool) => (
+            <GlassCard key={tool.title} className="hover:border-[var(--accent)]">
+              <tool.icon className="h-6 w-6 text-[var(--accent)]" />
+              <h3 className="mt-4 text-base font-semibold">{tool.title}</h3>
+              <p className="mt-2 text-sm text-muted">{tool.description}</p>
             </GlassCard>
           ))}
         </div>
@@ -97,13 +174,13 @@ export default function LandingPage() {
 
       <section className="surface p-7 md:p-10">
         <SectionTitle
-          title="Launch your first API product on RigAPI"
-          description="Create an account to access generation, deployment, gateway security, and billing controls."
+          title="Start with Marketplace, scale with seller tooling"
+          description="Create an account to browse APIs first, then unlock AI generation, deployment, and monetization workflows."
         />
         <div className="flex flex-wrap gap-3">
-          <Button href="/signup">Create Account</Button>
-          <Button href="/docs" variant="secondary">
-            Read Documentation
+          <Button href="/marketplace">Browse APIs</Button>
+          <Button href="/signup" variant="secondary">
+            Create Account
           </Button>
         </div>
       </section>

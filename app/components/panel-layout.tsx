@@ -24,7 +24,7 @@ export function PanelLayout({
           href="/"
           className="inline-flex rounded-[var(--radius-sm)] px-2 py-1 text-sm text-muted hover:-translate-y-px hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
         >
-          ? Back to RigAPI
+          {"<"} Back to RigAPI
         </Link>
       </div>
       <div className="grid gap-6 lg:grid-cols-[240px_1fr]">

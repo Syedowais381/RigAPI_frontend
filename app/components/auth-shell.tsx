@@ -17,7 +17,7 @@ export function AuthShell({
           href="/"
           className="mb-8 inline-flex rounded-[var(--radius-sm)] px-2 py-1 text-sm text-muted hover:-translate-y-px hover:bg-[var(--bg-elevated)] hover:text-[var(--text)]"
         >
-          ? RigAPI
+          {"<"} RigAPI
         </Link>
         <div className="surface p-6 sm:p-7">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
